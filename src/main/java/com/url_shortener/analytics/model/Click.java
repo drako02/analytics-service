@@ -26,6 +26,9 @@ public class Click {
     @Column(nullable = false)
     private LocalDateTime timestamp;
 
+    @Column(name = "user_id")
+    private String userId;
+
     public Click() {
 
     }
@@ -34,9 +37,10 @@ public class Click {
         this.shortCode = shortCode;
     }
 
-    public Click(String shortCode, LocalDateTime timestamp) {
+    public Click(String shortCode, String userId, LocalDateTime timestamp) {
         this.shortCode = shortCode;
         this.timestamp = timestamp;
+        this.userId = userId;
 
     }
 
@@ -54,6 +58,14 @@ public class Click {
 
     public void setShortCode(String shortCode) {
         this.shortCode = shortCode;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public LocalDateTime getTimestamp() {
