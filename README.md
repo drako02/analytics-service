@@ -120,5 +120,3 @@ analytics/
 
 - **Kafka:**  
   The `ClickEventConsumer` listens to the Kafka topic `redirections` and processes the JSON message containing `shortCode` and `userId`.
-
-This README follows best practices by documenting key functionalities, providing clear instructions for setup, explaining configurations, and outlining project structure.
