@@ -14,8 +14,9 @@ public class ClickService {
     @Autowired
     private ClickRepository clickRepository;
 
-    public Click recordClick(String shortCode, String userId) {
-        Click click = new Click(shortCode, userId, LocalDateTime.now());
+    public Click recordClick(Click click) {
+        // Click click = new Click(shortCode, userId, LocalDateTime.now());
+        // Click click = Click.builder(shortCode, userId, null).build();
         return clickRepository.save(click);
     }
 
