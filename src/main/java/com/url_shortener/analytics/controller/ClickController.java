@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.url_shortener.analytics.dto.ClickSearchParams;
 import com.url_shortener.analytics.dto.TopShortcodeDTO;
 import com.url_shortener.analytics.model.Click;
 import com.url_shortener.analytics.service.ClickService;
@@ -31,8 +33,9 @@ public class ClickController {
     }
 
     @GetMapping("/urls/clicks/{userId}")
-    public ResponseEntity<List<Click>> getUserClicks(@PathVariable String userId){
-        return ResponseEntity.ok(clickService.getClicksByUser(userId));
+    public ResponseEntity<List<Click>> getUserClicks(@PathVariable String userId, @ModelAttribute ClickSearchParams params){
+        System.out.println("StartDate: " + params.getStartDate() + ", EndDate: " + params.getEndDate());
+        return ResponseEntity.ok(clickService.getClicksByUser(userId, params));
     }
 
     @GetMapping("/users/{userId}/shortcodes/top")

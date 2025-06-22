@@ -1,5 +1,6 @@
 package com.url_shortener.analytics.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.url_shortener.analytics.dto.TopShortcodeDTO;
@@ -19,6 +20,15 @@ public interface ClickRepository extends JpaRepository<Click, Long> {
     Integer countByShortCodeAndUserId(String shortCode, String ownerId);
 
     List<Click> findByUserId(String userId);
+
+    @Query("""
+            SELECT c FROM Click c
+            WHERE c.userId = :userId
+            AND (CAST(:startDate AS timestamp) is NULL OR c.timestamp >= :startDate)
+            AND (CAST(:endDate AS timestamp) is NULL OR c.timestamp <= :endDate)
+                """)
+    List<Click> findByUserIdWithFilters(@Param("userId") String userId, @Param("startDate") LocalDateTime startDate,
+            @Param("endDate") LocalDateTime endDate);
 
     // @Query(value = "SELECT short_code, COUNT(*) AS total_clicks " +
     // "FROM clicks " +

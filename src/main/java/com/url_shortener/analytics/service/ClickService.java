@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.url_shortener.analytics.dto.ClickSearchParams;
 import com.url_shortener.analytics.dto.TopShortcodeDTO;
 import com.url_shortener.analytics.model.Click;
 import com.url_shortener.analytics.repository.ClickRepository;
@@ -37,8 +38,8 @@ public class ClickService {
         return clickRepository.countByShortCodeAndUserId(shortCode, userId);
     }
 
-    public List<Click> getClicksByUser(String userId) {
-        return clickRepository.findByUserId(userId);
+    public List<Click> getClicksByUser(String userId, ClickSearchParams query) {
+        return clickRepository.findByUserIdWithFilters(userId, query.getStartDate(), query.getEndDate());
     }
 
     public List<TopShortcodeDTO> getMostClickedShortcodes(int limit, String userId) {
