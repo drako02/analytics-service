@@ -51,5 +51,5 @@ jobs:
                     # docker run -d --name analytics -p 8080:8080 drako02/drako:analytics-latest
                     cd ~/url-shortener-compose
                     docker compose pull
-                    docker compose up -d --remove-orphans drako02/drako:analytics-latest
+                    docker compose up -d --remove-orphans spring_boot_service
                     
