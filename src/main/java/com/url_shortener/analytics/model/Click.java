@@ -29,7 +29,7 @@ public class Click {
     @Column(nullable = false, name = "user_id")
     private String userId;
 
-    @Column(name="ip_address", columnDefinition="inet")
+    @Column(name="ip_address")
     private String ipAddress;
 
     @Column(name = "duration_ms")
